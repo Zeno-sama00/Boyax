@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqua Bloom</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <!-- Left Side - Logo and Name -->
+        <div class="logo-container">
+            <img src="../Images/profile.png" alt="Logo" class="logo">
+            <span class="site-name">Aqua Bloom</span>
+        </div>
+        
+        <!-- Right Side - Profile, History, Remote -->
+        <div class="nav-buttons">
+            <button>History</button>
+            <button>Remote</button>
+           <!-- Profile Picture with Dropdown -->
+<div class="profile-container">
+    <img src="../Images/person.png" alt="Profile" class="profile-pic" id="profilePic">
+    <div class="dropdown-menu" id="profileDropdown">
+        <a href="#">Profile</a>
+        <a href="#">Log Out</a>
+    </div>
+</div>
+
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="card-container">
+            <!-- Graph (Left Side) -->
+            <div class="card chart-card">
+                  <!-- Production Name Display -->
+<h3 id="productionTitle" class="production-title">No Production Started</h3>
+                <!-- Filter Buttons -->
+                <div class="filter-container">
+                    <div class="filter-buttons">
+                        <button onclick="updateChart('day')" class="filter-option">Day</button>
+                        <button onclick="updateChart('week')" class="filter-option">Week</button>
+                        <button onclick="updateChart('month')" class="filter-option">Month</button>
+                    </div>
+                </div>
+              
+
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <!-- Stacked Cards (Right Side) -->
+            <div class="cards-right">
+                <div class="card npk-card">
+                    <h3>Real-time NPK Levels</h3>
+                    <div class="npk-section">
+                        <div class="npk-item">
+                            <span class="npk-label">N</span>
+                            <span class="npk-name">Nitrogen</span>
+                            <span class="npk-value" id="nitrogen-level">0</span>
+                        </div>
+                        <div class="npk-item">
+                            <span class="npk-label">P</span>
+                            <span class="npk-name">Phosphorus</span>
+                            <span class="npk-value" id="phosphorus-level">0</span>
+                        </div>
+                        <div class="npk-item">
+                            <span class="npk-label">K</span>
+                            <span class="npk-name">Potassium</span>
+                            <span class="npk-value" id="potassium-level">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card moisture-card">
+                    <h3>Real-time Soil Moisture Level</h3>
+                    <div class="progress-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="bg-circle" cx="50" cy="50" r="40"></circle>
+                            <circle class="progress" cx="50" cy="50" r="40"></circle>
+                        </svg>
+                        <div class="percentage" id="moisture-level">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+        
+        <!-- Production Buttons -->
+<div class="production-buttons">
+    <button id="newProductionBtn">New Production</button>
+    <button id="endProductionBtn" class="end-production-btn">End Production</button>
+
+    <!-- Popup Modal for End Production Confirmation -->
+    <div id="endProductionModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to end the production?</p>
+            <button id="confirmEndProduction" class="confirm-btn">Yes</button>
+            <button id="cancelEndProduction" class="cancel-btn">No</button>
+        </div>
+    </div>
+    
+</div>
+
+<!-- New Production Popup -->
+<div id="newProductionPopup" class="popup">
+    <div class="popup-content">
+        <h2>Start New Production</h2>
+        <label for="productionName">Production Name:</label>
+        <input type="text" id="productionName">
+        <button id="nextStepBtn">Next</button>
+        <button id="closePopup">Cancel</button>
+    </div>
+</div>
+
+<!-- Calendar Popup -->
+<div id="calendarPopup" class="popup">
+    <div class="popup-content">
+        <h2>Select Start Date</h2>
+        <input type="date" id="startDate">
+        <button id="confirmProductionBtn">Confirm</button>
+        <button id="closeCalendarPopup">Cancel</button>
+    </div>
+</div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
