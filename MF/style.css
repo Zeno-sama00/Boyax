@@ -1,0 +1,347 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    background: #f4f5f7;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: white;
+    height: 100vh;
+    padding: 20px;
+  
+    position: fixed; 
+    left: 0;
+    top: 0;
+    
+    border-right: 2px solid #dbe2ef;
+    transition: min-width 0.3s ease-in-out;
+    overflow: visible; /* Prevents button from being clipped */
+    white-space: nowrap;
+}
+
+.sidebar.collapsed {
+    min-width: 85px;
+    max-width: 85px;
+}
+
+/* Prevent text shifting */
+.menu li {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.menu li span {
+    width: 150px;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out 0.15s;
+}
+
+.sidebar.collapsed .menu li span {
+    opacity: 0;
+    width: 0;
+    transition: opacity 0.1s ease-in-out;
+}
+
+/* Company & Profile Section */
+.company, .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+}
+
+.company .company-name,
+.profile .name {
+    width: 150px;
+    overflow: hidden;
+    transition: opacity 0.2s ease-in-out 0.15s;
+}
+
+.sidebar.collapsed .company-name,
+.sidebar.collapsed .profile .name {
+    opacity: 0;
+    width: 0;
+}
+
+/* Company Logo */
+.company {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.company img {
+    width: 40px;
+    height: 40px;
+}
+
+.company .company-name {
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar.collapsed .company .company-name {
+    display: none;
+}
+
+/* Profile Section */
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+    margin-bottom: 30px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profile .name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.sidebar.collapsed .profile .name {
+    display: none;
+}
+
+/* Menu Items */
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    display: flex;
+    align-items: center;
+    padding: 15px 0 15px 0;
+    color: #333;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    justify-content: center;
+}
+
+.menu li:hover {
+    background: #dbe2ef;
+}
+
+.menu li i {
+    width: 30px;
+    text-align: center;
+    color: #3f72af;
+}
+
+.menu li span {
+    margin-left: 10px;
+    transition: opacity 0.3s;
+}
+
+.sidebar.collapsed .menu li span {
+    display: none;
+}
+
+/* Logout Button */
+.logout {
+    margin-top: 20px;
+    color: #ff4d4d;
+}
+
+.logout:hover {
+    background: #ff3333;
+    color: white;
+}
+
+/* Toggle Button (Fix for Cut-Off Issue) */
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: -20px; /* Move it inside so it's fully visible */
+    background: #ffffff;
+    border: solid 1px #b8b8b8;
+    color: white;
+    border-radius: 50%;
+    width: 40px; /* Increase width */
+    height: 40px; /* Increase height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s, right 0.3s;
+    z-index: 100; /* Ensure it's always on top */
+}
+
+/* When sidebar is collapsed */
+.sidebar.collapsed .toggle-btn {
+    right: -20px;
+    transform: rotate(180deg);
+}
+
+.toggle-btn img {
+    width: 25px;
+    height: 25px;
+}
+.menu img {
+    width: 25px;
+    height: 25px;
+}
+#weather-widget {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    background: linear-gradient(to right, #3c9fec 5%, #0b80bf 100%);
+    color: rgb(255, 255, 255);
+    padding: 20px 15px; /* Reduced padding for thinner height */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 50px; /* Thinner height */
+   
+}
+
+/* City name */
+#city-name {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+/* Forecast container */
+#forecast {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Forecast item */
+.forecast-item {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 90px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Date & Time */
+.forecast-time {
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+/* Weather Icon */
+.forecast-icon img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Temperature */
+.forecast-temp {
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Rain Status */
+.forecast-rain {
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+/* Responsive for 768px */
+@media (max-width: 768px) {
+    #weather-widget {
+        width: calc(100% - 60px); /* Prevents overlap with sidebar */
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 4px 10px;
+        min-height: 40px;
+    }
+
+    .forecast-item {
+        min-width: 75px;
+        font-size: 11px;
+    }
+
+    .forecast-icon img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .sidebar.collapsed {
+        width: 60px;
+    }
+
+    .profile img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .menu li {
+        padding: 12px;
+    }
+
+    .toggle-btn {
+        width: 35px;
+        height: 35px;
+        right: -18px; /* Adjusted to prevent cut-off */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sidebar {
+        position: fixed;
+        left: -200px;
+        width: 200px;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .toggle-btn {
+        left: 210px;
+    }
+
+    .sidebar.collapsed {
+        left: -60px;
+    }
+}

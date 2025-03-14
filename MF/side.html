@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collapsible Sidebar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="weather-widget">
+        <div id="city-name">Loading weather...</div><br>
+        <div id="forecast"></div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <!-- Logo and Company Name -->
+        <div class="company">
+            <img src="logo-final.png" alt="Logo">
+            <span class="company-name">Aqua Spring</span>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="profile">
+            <img src="profile.png" alt="User">
+            <span class="name">Jhon Doe</span>
+        </div>
+
+        <!-- Menu Items -->
+        <ul class="menu">
+            <li><img src="home (1).png" alt=""> <span>Dashboard</span></li>
+            <li><img src="view.png" alt=""> <span>Insight</span></li>
+            <li><img src="press-button.png" alt=""> <span>Remote</span></li>
+            <li><img src="file.png" alt=""> <span>History</span></li>
+            <li><img src="settings.png" alt=""> <span>Settings</span></li>
+            <li class="logout"><img src="log-out.png" alt=""> <span>Logout</span></li>
+        </ul>
+
+        <!-- Toggle Button -->
+        <div class="toggle-btn" id="toggle-btn">
+            <img src="collapse.png" alt="">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
