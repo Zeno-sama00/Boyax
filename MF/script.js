@@ -10,7 +10,7 @@ toggleBtn.addEventListener("click", () => {
     }
 });
 async function getWeather() {
-    const apiKey = "ed3b158f56d73941aa20954dbd8f33f1"; // 🔹 Replace with your OpenWeatherMap API key
+    const apiKey = ""; // 🔹 Replace with your OpenWeatherMap API key
     const city = "Manila"; 
     let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
 
