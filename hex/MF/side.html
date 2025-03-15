@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqua Spring</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+    <div class="sidebar" id="sidebar">
+        <!-- Logo and Company Name -->
+        <div class="company">
+            <img src="Images/logo-final.png" alt="Logo">
+            <span class="company-name">Aqua Spring</span>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="profile">
+            <img src="Images/profile.png" alt="User">
+            <span class="name">Jhon Doe</span>
+        </div>
+
+        <!-- Menu Items -->
+        <ul class="menu">
+            <li><img src="Images/menu.png" alt=""> <span>Dashboard</span></li>
+            <li><img src="Images/view.png" alt=""> <span>Insight</span></li>
+            <li><img src="Images/press-button.png" alt=""> <span>Remote</span></li>
+            <li><img src="Images/file.png" alt=""> <span>History</span></li>
+            <li><img src="Images/settings.png" alt=""> <span>Settings</span></li>
+            <li class="logout"><img src="Images/log-out.png" alt=""> <span>Logout</span></li>
+        </ul>
+
+        <!-- Toggle Button -->
+        <div class="toggle-btn" id="toggle-btn">
+            <img src="Images/collapse.png" alt="">
+        </div>
+    </div>
+    <div id="weather-widget">
+        <div id="city-name">Loading weather...</div><br>
+        <div id="forecast"></div>
+    </div>
+    <div class="container">
+       
+        <div class="grid-container">
+           <div class="grid-item">   
+               <div class="card card-1" id="NPK">
+                   <h3>Real-time NPK Levels</h3>
+                   <br> <br>
+                   <div class="npk-section">
+                       <div class="npk-item">
+                           <span class="npk-label">N</span>
+                           <span class="npk-name">Nitrogen</span>
+                           <span class="npk-value" id="nitrogen-level">0</span>
+                       </div>
+                       <div class="npk-item ">
+                           <span class="npk-label">P</span>
+                           <span class="npk-name">Phosphorus</span>
+                           <span class="npk-value" id="phosphorus-level">0</span>
+                       </div>
+                       <div class="npk-item">
+                           <span class="npk-label">K</span>
+                           <span class="npk-name">Potassium</span>
+                           <span class="npk-value" id="potassium-level">0</span>
+                       </div>
+                   </div>
+               </div>
+           </div>
+               <div class="grid-item">
+                   <div class="card card-2" id="SOIL">
+                       <div id="weatherEffect">
+                           <div id="droplets"></div>
+                           <div id="sun"></div>
+                       </div>
+                       <h3>Real-time Soil Moisture Level</h3>
+                       <br> <br>
+                       <div class="progress-circle">
+                           <svg viewBox="0 0 100 100">
+                               <circle class="bg-circle" cx="50" cy="50" r="40"></circle>
+                               <circle class="progress" cx="50" cy="50" r="40"></circle>
+                           </svg>
+                           <div class="percentage" id="moisture-level">0%</div>
+                       </div>
+                   </div>
+               </div>
+               <div class="grid-item">
+                   <div class="col-2 card card-1" >    
+                       <br> <br>
+                       <div id="calendar"></div>
+       
+                   </div>
+               </div>
+               <div class="grid-item full-row">
+                   <div class="col-2 card full-row updates-card">
+                       <br> <br>
+                      
+                       <h3>Updates</h3>
+                       <br>
+                       <ul id="updates-list"></ul>
+                  
+                   </div>
+               </div>
+               <div class="grid-item full-width row card">
+                   <div class="chart-container col-1">
+                       <!-- Production Name Display -->
+       <h3 id="productionTitle" class="production-title">No Production Started</h3>
+       <!-- Filter Buttons -->
+       <div class="filter-container">
+       <div class="filter-buttons">
+       <button onclick="updateChart('day')" class="filter-option">Day</button>
+       <button onclick="updateChart('week')" class="filter-option">Week</button>
+       <button onclick="updateChart('month')" class="filter-option">Month</button>
+       </div>
+       </div>
+       <canvas id="myLineChart"></canvas>
+       </div>
+       <div class="col-2 down">
+           <!-- <div class="production-buttons"> -->
+               <button id="newProductionBtn">New Production</button>       
+               <button id="endProductionBtn" class="end-production-btn">End Production</button>
+              
+               <!-- Popup Modal for End Production Confirmation -->
+               <div id="endProductionModal" class="popup">
+                   <div class="modal-content">
+                       <p>Are you sure you want to end the production?</p> <br>
+                       <button id="confirmEndProduction" class="confirm-btn">Yes</button>
+                     
+                       <button id="cancelEndProduction" class="cancel-btn">No</button>
+                   </div>
+               </div>
+               
+           <!-- </div> -->
+       <div id="newProductionPopup" class="popup">
+           <div class="popup-content">
+               <h2>Start New Production</h2>
+               <label for="productionName">Production Name:</label>
+               <input type="text" id="productionName">
+               <button id="nextStepBtn">Next</button>
+               <button id="closePopup">Cancel</button>
+           </div>
+       </div>
+       
+       <!-- Calendar Popup -->
+       <div id="calendarPopup" class="popup">
+           <div class="popup-content">
+               <h2>Select Start Date</h2>
+               <input type="date" id="startDate">
+               <button id="confirmProductionBtn">Confirm</button>
+               <button id="closeCalendarPopup">Cancel</button>
+           </div>
+       </div>
+       </div>
+               </div>
+             </div>
+           </div>
+    <script src="script.js"></script>
+</body>
+</html>

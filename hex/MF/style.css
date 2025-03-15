@@ -1,0 +1,882 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    background: #f4f5f7;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: white;
+    height: 100vh;
+    padding: 20px;
+  
+    position: fixed; 
+    left: 0;
+    top: 0;
+    
+    border-right: 2px solid #dbe2ef;
+    transition: min-width 0.3s ease-in-out;
+    overflow: visible; /* Prevents button from being clipped */
+    white-space: nowrap;
+}
+
+.sidebar.collapsed {
+    min-width: 85px;
+    max-width: 85px;
+}
+
+/* Prevent text shifting */
+.menu li {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.menu li span {
+    width: 150px;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out 0.15s;
+}
+
+.sidebar.collapsed .menu li span {
+    opacity: 0;
+    width: 0;
+    transition: opacity 0.1s ease-in-out;
+}
+
+/* Company & Profile Section */
+.company, .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+}
+
+.company .company-name,
+.profile .name {
+    width: 150px;
+    overflow: hidden;
+    transition: opacity 0.2s ease-in-out 0.15s;
+}
+
+.sidebar.collapsed .company-name,
+.sidebar.collapsed .profile .name {
+    opacity: 0;
+    width: 0;
+}
+
+/* Company Logo */
+.company {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.company img {
+    width: 40px;
+    height: 40px;
+}
+
+.company .company-name {
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar.collapsed .company .company-name {
+    display: none;
+}
+
+/* Profile Section */
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+    margin-bottom: 30px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profile .name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.sidebar.collapsed .profile .name {
+    display: none;
+}
+
+/* Menu Items */
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    display: flex;
+    align-items: center;
+    padding: 15px 0 15px 0;
+    color: #333;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    justify-content: center;
+}
+
+.menu li:hover {
+    background: #dbe2ef;
+}
+
+.menu li i {
+    width: 30px;
+    text-align: center;
+    color: #3f72af;
+}
+
+.menu li span {
+    margin-left: 10px;
+    transition: opacity 0.3s;
+}
+
+.sidebar.collapsed .menu li span {
+    display: none;
+}
+
+/* Logout Button */
+.logout {
+    margin-top: 20px;
+    color: #ff4d4d;
+}
+
+.logout:hover {
+    background: #ff3333;
+    color: white;
+}
+
+/* Toggle Button (Fix for Cut-Off Issue) */
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: -20px; /* Move it inside so it's fully visible */
+    background: #ffffff;
+    border: solid 1px #b8b8b8;
+    color: white;
+    border-radius: 50%;
+    width: 40px; /* Increase width */
+    height: 40px; /* Increase height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s, right 0.3s;
+    z-index: 100; /* Ensure it's always on top */
+}
+
+/* When sidebar is collapsed */
+.sidebar.collapsed .toggle-btn {
+    right: -20px;
+    transform: rotate(180deg);
+}
+
+.toggle-btn img {
+    width: 25px;
+    height: 25px;
+}
+.menu img {
+    width: 25px;
+    height: 25px;
+}
+#weather-widget {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 150px; /* Adjust width as needed */
+    background-color: #3474a5;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+/* City name */
+#city-name {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+/* Forecast container */
+#forecast {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Forecast item */
+.forecast-item {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 90px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Date & Time */
+.forecast-time {
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+/* Weather Icon */
+.forecast-icon img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Temperature */
+.forecast-temp {
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Rain Status */
+.forecast-rain {
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+.container {
+    width: 90%;
+   
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-columns: 2;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.npk-card, .soil-moisture-card, .calendar-card {
+    height: 200px;
+}
+
+.npk-values {
+    display: flex;
+    justify-content: space-around;
+}
+
+.moisture-container {
+    position: relative;
+    display: inline-block;
+}
+
+#moistureAnimation {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+}
+
+.sunny {
+    background: radial-gradient(circle, yellow 50%, transparent);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.rainy {
+    background: url('rain.gif') no-repeat center;
+    width: 100px;
+    height: 100px;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day {
+    padding: 10px;
+    background: #eee;
+    border-radius: 5px;
+}
+
+.marked {
+    background: red;
+    color: white;
+    font-weight: bold;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+.down {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    justify-self: center; /* Centers horizontally */
+    align-self: center; /* Centers vertically */
+    gap: 20px;
+   
+} 
+.down button {
+    background: #0b80bf;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+    width: 100%;
+  
+} 
+
+.down button:hover {
+    background: #0968a8;
+}
+
+.grid-item {
+    text-align: center;
+}
+.full-width {
+    grid-column: span 3;
+} 
+.full-row {
+    grid-row: span 2;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;     
+   
+}
+.col-1 {
+    flex-basis: 70%;
+}
+.col-2 {
+    flex-basis: 10%;    
+}
+.card {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 
+    0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    transition: 0.5s;
+    height: 100%;
+    position: relative; /* This is important */
+   
+}
+.card-1 {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center vertically */
+    text-align: center;
+}
+.card-2 {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 100%; /* Ensure full height */
+    width: 100%;
+    text-align: center;
+}
+.npk-section {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.npk-item {
+    flex: 1;
+    position: relative;
+}
+
+/* Vertical Line between N, P, K */
+.npk-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 10%;
+    height: 80%;
+    width: 2px;
+    background-color: #ccc;
+}
+
+.npk-label {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0b80bf;
+}
+
+.npk-name {
+    display: block;
+    font-size: 14px;
+    color: gray;
+    margin-top: 5px;
+}
+
+.npk-value {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Progress Circle */
+.progress-circle {
+    position: relative;
+    width: 120px; /* Increase size */
+    height: 120px; /* Increase size */
+}
+
+svg {
+    width: 120px; /* Increase size */
+    height: 120px; /* Increase size */
+    transform: rotate(-90deg);
+}
+
+.bg-circle {
+    fill: none;
+    stroke: #ddd;
+    stroke-width: 10;
+}
+
+.progress {
+    fill: none;
+    stroke: #0b80bf;
+    stroke-width: 10;
+    stroke-dasharray: 251.2;
+    stroke-dashoffset: 251.2;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px; /* Make the percentage text bigger */
+    font-weight: bold;
+    color: #0b80bf;
+}
+#SOIL {
+   justify-items: center;
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+   
+}
+.filter-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Unified filter button */
+.filter-buttons {
+    display: flex;
+    background: white;
+    border: 2px solid #0b80bf;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.filter-option {
+    flex: 1;
+    border: none;
+    padding: 8px 12px;
+    background: white;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: bold;
+    color: #0b80bf;
+    transition: background 0.3s, color 0.3s;
+    text-align: center;
+}
+
+/* Single line separator between buttons */
+.filter-option:not(:last-child) {
+    border-right: 2px solid #0b80bf;
+}
+
+/* Hover and active state */
+.filter-option:hover {
+    background: #0b80bf;
+    color: white;
+}
+
+/* Active (Clicked) Button */
+.filter-option:active {
+    background: #0b80bf;
+    color: white;
+}
+
+#calendar {
+    margin: 4px auto 4px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background: white;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+   
+}
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+    
+}
+.day {
+    padding: 10px;
+    border-radius: 4px;
+    background: #f0f0f0;
+}
+.day.today {
+    background: #007bff;
+    color: white;
+}
+.production-buttons {
+    gap: 20px;
+    margin-top: 20px;
+  
+}
+
+.production-buttons button {
+    background: #0b80bf;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.production-buttons button:hover {
+    background: #0968a8;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.popup button {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#nextStepBtn, #confirmProductionBtn {
+    background: #0b80bf;
+    color: white;
+}
+
+#closePopup, #closeCalendarPopup {
+    background: gray;
+    color: white;
+}
+.production-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+/* Modal Background */
+.modal {
+    display: none; /* Hide by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.modal-content button {
+    margin-top: 10px;
+}
+
+/* Button Styles */
+.end-production-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.confirm-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.cancel-btn {
+    background: gray;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+    .col-1 {
+        flex-basis: 80%;
+    }
+    .npk-label {
+        font-size: 24px;
+        font-weight: bold;
+        color: #0b80bf;
+    }
+    
+    .npk-name {
+        display: block;
+        font-size: 10px;
+        color: gray;
+        margin-top: 5px;
+    }
+    
+    .npk-value {
+        display: block;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .card h3 {
+        font-size: medium;
+    }
+
+}
+/* 🌧️ DROPLETS */
+#droplets {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    display: none; /* Initially hidden */
+}
+
+.droplet {
+    position: absolute;
+    width: 15px;
+    height: 50px;
+    background: rgba(0, 150, 255, 0.7);
+    border-radius: 50%;
+    animation: fall 1.5s linear infinite;
+}
+
+/* Random Droplet Positions */
+.droplet:nth-child(1) { left: 10px; animation-delay: 0.1s; }
+.droplet:nth-child(2) { left: 30px; animation-delay: 0.3s; }
+.droplet:nth-child(3) { left: 50px; animation-delay: 0.5s; }
+.droplet:nth-child(4) { left: 70px; animation-delay: 0.7s; }
+.droplet:nth-child(5) { left: 90px; animation-delay: 0.9s; }
+.droplet:nth-child(6) { left: 110px; animation-delay: 0.9s; }
+.droplet:nth-child(7) { left: 130px; animation-delay: 0.9s; }
+.droplet:nth-child(8) { left: 150px; animation-delay: 0.9s; }
+
+/* Droplet Fall Animation */
+@keyframes fall {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(100%); opacity: 0; } /* Now they go to the bottom */
+}
+
+/* ☀️ SUN */
+#sun {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    background: rgb(229, 255, 0);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255, 255, 0, 0.8);
+    display: none; /* Initially hidden */
+    animation: glow 2s infinite alternate;
+}
+
+/* Sun Glow Effect */
+@keyframes glow {
+    from { box-shadow: 0 0 20px rgba(255, 255, 0, 0.8); }
+    to { box-shadow: 0 0 40px rgb(255, 164, 29); }
+}
+#droplets, #sun {
+    position: absolute;
+    top: 10px; /* Adjust this to move it up/down */
+    left: 50%;
+    transform: translateX(-50%); /* Centers it horizontally */
+}
+
+/* 📌 Updates Card */
+.updates-card {
+    position: relative;
+    width: 100%;
+    max-width: 350px; /* Adjust width */
+    height: 100%; /* Adjust height */
+    background: #3c9fec; /* Glass effect */
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 📌 Title */
+.updates-card h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+/* 📌 Updates List */
+#updates-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 600px;
+    flex-grow: 1; /* Makes the list expand inside the card */
+    overflow-y: auto; /* Enables scroll when full */
+    scrollbar-width: thin; /* Firefox scrollbar */
+}
+
+/* 📌 Each Update Item */
+#updates-list li {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #ffffff;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 0.5s forwards;
+}
+
+/* 📌 Scrollbar Customization */
+#updates-list::-webkit-scrollbar {
+    width: 6px;
+}
+#updates-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+#updates-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ✨ Fade-in Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
