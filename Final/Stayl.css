@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  
+}
+
+body {
+    display: flex;
+    background: #f5f6f8;
+    height: 100vh;
+    overflow: hidden;
+}
+ /* Sidebar */
+ .sidebar {
+    min-width: 250px;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    color: #333333;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+.user-profile {
+    text-align: center; 
+}
+.user-profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.badge {
+    background: rgba(43, 100, 206);
+    color: rgb(255, 255, 255);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: inline-block;
+    margin-top: 5px;
+}
+nav {
+    width: 100%;
+}
+nav ul {
+    list-style: none;
+    padding: 20px 0;
+}
+nav li {
+    align-items: end;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+nav ul li {
+    padding: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+nav ul li:hover, .active {
+    background: rgba(154, 165, 185, 0.5);
+    border-radius: 5px;
+}
+
+.logout {
+    margin-top: auto;
+    padding: 10px;
+    width: 100%;
+    background: rgba(43, 100, 206);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.company {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.company img {
+    width: 50px;
+    height: 50px;
+}
+
+.company-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+.icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+.icon1 {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    justify-self: center;
+}
+.main-content {
+    display: grid;
+    grid-template-rows: 80px 1fr; 
+    height: 100vh;  
+    overflow: hidden;  
+    width: 100%;
+}
+.navbar {
+    height: 80px;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #dbe2ef;
+}
+.dashboard-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+/* Weather Widget */
+.weather-widget {
+    position: fixed;
+    right: -350px;
+    top: 50px;
+    width: 350px;
+    background: rgba(43, 100, 206);
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px 0 0 10px;
+    transition: right 0.3s ease-in-out;
+    color: #e0e0e0;
+    z-index: 5;
+}
+.weather-toggle {
+    position: fixed;
+    right: 0;
+    top: 50px;
+    background: rgba(43, 100, 206);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.weather-widget.open {
+    right: 0;
+}
+
+.weather-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weather-header button {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+.weather-content {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.weather-content img {
+    width: 50px;
+}
+
+.forecast-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0;
+    border: solid 2px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.forecast-item .temp {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.forecast-item .rain {
+    font-size: 14px;
+}
+
+.forecast-item .date, .forecast-item .time {
+    font-size: 12px;
+}
+
+.calendar-widget {
+    position: fixed;
+    right: -500px;
+    top: 50px;
+    width: 500px;
+    background: rgba(43, 100, 206);
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px 0 0 10px;
+    transition: right 0.3s ease-in-out;
+    color: #e0e0e0;
+}
+.calendar-toggle {
+    position: fixed;
+    right: 0;
+    top: 100px;
+    background: rgba(43, 100, 206);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.calendar-widget.open {
+    right: 0;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calendar-header button {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+}
+.calendar-cell {
+    color: black;
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 100%;
+    min-height: 300px; /* Set a fixed height for the calendar */
+    max-height: 100%;
+    overflow: hidden;
+}
+
+/* Make FullCalendar responsive inside the grid */
+#calendar {
+    width: 100%;
+    height: 100%; /* Full height of the container */
+    display: block; /* Ensures it fills the container */
+  
+}
+
+.planted-day {
+    background-color: #77C2A7;
+    color: white;
+}
+
+.end-day {
+    background-color: #FF7F7F;
+    color: white;
+}
+.gm {
+    margin-top: 15px;
+}
